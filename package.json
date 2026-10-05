@@ -1,0 +1,29 @@
+{
+  "name": "smart-student-attendance-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A role-based student attendance management system backed by PostgreSQL.",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c cyan,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "build": "npm --workspace client run build",
+    "start": "npm --workspace server start",
+    "test": "npm run test:server && npm run test:client",
+    "test:server": "npm --workspace server test",
+    "test:client": "npm --workspace client test",
+    "lint": "npm run lint:server && npm run lint:client",
+    "lint:server": "npm --workspace server run lint",
+    "lint:client": "npm --workspace client run lint",
+    "db:migrate": "npm --workspace server run db:migrate",
+    "db:seed": "npm --workspace server run db:seed",
+    "db:create-admin": "npm --workspace server run db:create-admin",
+    "setup:env": "node scripts/setup-env.js",
+    "format": "prettier --write \"client/src/**/*.{js,jsx,css}\" client/vite.config.js \"server/src/**/*.js\" \"server/test/**/*.js\" \"scripts/**/*.js\" eslint.config.js \"docs/**/*.md\" README.md"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prettier": "^3.4.2"
+  }
+}
